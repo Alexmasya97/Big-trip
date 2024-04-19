@@ -32,24 +32,21 @@ function createAuthor() {
   const avatar = `img/avatars/user${formattedNumber}.png`; // создаем уникальный адрес изображения
   return avatar;
 }
-const authorAvatar = createAuthor();
 
 function getRandomArrayElement(elements) {
   return elements[randomNumber(0, elements.length - 1)]
 }
 
-function generateFeatures() {
-  const features = [];
-  const possibleValues = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner',];
+function generateRandomElementsArray(possibleValues) {
   const length = Math.floor(Math.random() * possibleValues.length) + 1;
-  const chosenFeatures = new Set();
+  const chosenElements = new Set();
 
-  while (chosenFeatures.size < length) {
-    const randomFeature = getRandomArrayElement(possibleValues);
-    chosenFeatures.add(randomFeature);
+  while (chosenElements.size < length) {
+    const randomElement = getRandomArrayElement(possibleValues);
+    chosenElements.add(randomElement);
   }
 
-  return Array.from(chosenFeatures);
+  return Array.from(chosenElements);
 }
 
 function createOffer() {
@@ -74,7 +71,7 @@ function createOffer() {
     guests: Math.floor(Math.random() * 10) + 1,
     checkin: getRandomArrayElement(['12:00', '13:00', '14:00']),
     checkout: getRandomArrayElement(['12:00', '13:00', '14:00']),
-    features: generateFeatures(),
+    features: generateRandomElementsArray(['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner',]),
     description: getRandomArrayElement([
       'This beautiful house offers breathtaking views of the surrounding nature.',
       'All this in the peaceful surroundings of our beautiful gardens, will make unforgettable holiday.',
@@ -82,7 +79,7 @@ function createOffer() {
       'Holiday with wonderful surroundings of nature and at the same time luxury and coziness.',
       'Welcomes you in a real cosmopolitan, pulsing milieu, at the same time offering peace and intimate retirement, just in the heart of the city centre.'
     ]),
-    photos:getRandomArrayElement( [
+    photos: generateRandomElementsArray([
       'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
       'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
       'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
